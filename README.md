@@ -2,4 +2,4 @@
 
 Possible visual component to the "igram"
 
-[screenshot](/screenshot.png)
+![screenshot](/screenshot.png)
