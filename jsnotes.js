@@ -1,3 +1,5 @@
+//encoding chars
+
 var units = {
 	".": 1,
 	"-": 3,
@@ -71,5 +73,25 @@ function encodeLetterBeep(beep, index, list){
 
 function readQueue(i){
 }
+
+//notes for interpreting moorse code
+
+// Start timer 1 when pressed, end when unpressed
+  // If longer than 3x interval && less than 7x interval count as bar
+  // If shorter than 3x interval count as beep
+  // if longer than 7x throw error.
+// Start timer 2 when not pressed end when pressed or longer than 7X interval
+  // If depress longer than 7x interval count as word space
+  // If depress longer than 3x interval  but shorter than 7x count as new letter
+  // If depress shorter than 3 X interval count as letter space
+
+// Loop checks timer
+// On timer 
+// starts counting up until off or longer than 7x
+// depress timer
+// start starts counting until on or longer than 7x
+//Push to queue that will be interpreted 
+
+
 
 
