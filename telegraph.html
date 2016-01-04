@@ -2,22 +2,23 @@
 <title>Telegraph</title>
 <link rel="stylesheet" type="text/css" href="main.css">
 <script>
-	setTimeout(function(){
-		var bar = document.getElementById('bar');
-		var value = -2;
-		function tapBar(){
-            bar.style.transform = "rotate("+ (value *= -1) + "deg)"
-            setTimeout(function(){
-                bar.style.transform = "rotate("+ (value *= -1) + "deg)"
-                setTimeout(function(){
-                	tapBar();
-                },Math.random()*2000)
-            },250);
-		}
+	// setTimeout(function(){
+	// 	var bar = document.getElementById('bar');
+	// 	var cord = document.getElementById('cord');
+	// 	var value = -2;
+	// 	function tapBar(){
+	// 		cord.style.transform = "rotate("+ (value) + "deg)"
+ //            bar.style.transform = "rotate("+ (value *= -1) + "deg)"
+ //            setTimeout(function(){
+	// 		cord.style.transform = "rotate("+ (value) + "deg)"	
+ //                bar.style.transform = "rotate("+ (value *= -1) + "deg)"
+        
+ //            },250);
+	// 	}
 
-		tapBar();
+	// 	tapBar();
 
-	},1000)
+	// },1000)
 </script>
 <style type="text/css"></style></head>
 	<body>
@@ -33,6 +34,7 @@
                      <span class="w3">V</span>
                      <span class="w4">V</span>
 </div><div class="base-cord-end">VVVV</div>
+    <div id="cord" class="base-cord-flat">VVVVVVVVVV</div>
 			<div class="back-knob-contianer">
 				<div class="back-knob-top"></div>
 				<div class="back-knob-inner-1"></div>
@@ -81,8 +83,11 @@
 			<div class="base-bottom-1">/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////</div>
 			<div class="base-bottom-2">\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\<br>\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\</div>
 			<div class="base-bottom-3">/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////</div>
+			<div class="interval-dial"><input class="interval-slider" type="range"></div>
 		</div>
 	</div>
-	
-
+	<p>Time:<span id="time"></span></p>
+	<p>Code:<span id="code"></span></p>
+	<p>Sentence:<span id="sentence"></span></p>
+<script type="text/javascript" src="onOffTimer.js" ></script>
 </body></html>
