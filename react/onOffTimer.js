@@ -1,7 +1,4 @@
-
-
-
-function app(){	
+function Timer(){	
 
 	var units = {
 		".": 1,
@@ -243,3 +240,4 @@ function app(){
 
 
 
+module.exports = Timer;
