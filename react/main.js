@@ -1,90 +1,87 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import Timer from './public/onOffTimer'
+var React = require('react')
+var ReactDOM = require('react-dom');
+//var Timer = require('./public/onOffTimer');
+var Telegraph = require('./components/Telegraph');
+var Display = require('./components/Display');
+var Timer = require('./utilities/Timer')
+var Utilities = require('./utilities/Utilities');
 
+var App = React.createClass({
+  
+    componentDidMount: function() {
+        this._addTelegraphListeners();
+    },
 
+    getInitialState: function(){
+       return {
+          barAngle: -2,
+          calledOnce: false,
+          timer: 0,
+          pressed: false
+         
 
-class App extends React.Component {
-  constructor () {
-    super()
-    this.state = { n: 0 }
-  }
-  render () {
-    return (<div>
-<div className="container">
-  <div className="bar-container" id="bar" >
-    <div className="bar">
-    </div>
-  <div className="base-cord">VVVVVVVVVVVVV</div>
-  <div className="base-cord-curved">
-    <span className="w0">V</span>
-    <span className="w1">V</span>
-    <span className="w2">V</span>
-    <span className="w3">V</span>
-    <span className="w4">V</span>
-  </div>
-  <div className="base-cord-end">VVVV</div>
-  <div id="cord" className="base-cord-flat">VVVVVVVVVV</div>
-  <div className="back-knob-contianer">
-  <div className="back-knob-top"></div>
-  <div className="back-knob-inner-1"></div>
-  <div className="back-knob-inner-2"></div>
-  <div className="back-knob-inner-3"></div>
-  <div className="back-knob-inner-4"></div>
-  <div className="back-knob-inner-5"></div>
-  <div className="back-knob-inner-6"></div>
-  <div className="back-knob-bottom"></div>
-  </div>  
-  <div className="forward-knob-contianer">
-  <div className="forward-knob-inner-1"></div>
-  <div className="forward-knob-inner-2"></div>
-  <div className="forward-knob-inner-3"></div>
-  <div className="forward-knob-inner-4"></div>
-  <div className="forward-knob-inner-5"></div>
-  <div className="forward-knob-inner-6"></div>
-  <div className="forward-knob-bottom"></div>
-  <div className="bottom-conductor-top"></div>
-  <div className="bottom-conductor-bottom"></div>
-  </div>
-  <div className="big-knob"></div>
-  <div className="big-knob-base"></div>
-  <div className="below-big-knob"><div className="below-big-knob-inner"></div></div>
-  </div>
-  <div className="base-knob-forward-contianer">
-  <div className="base-knob-forward">
-  <div className="base-knob-forward-inner-1"></div>
-  <div className="base-knob-forward-inner-2"></div>
-  <div className="base-knob-forward-inner-3"></div>
-  </div>
-  </div>
-  <div className="base-container">
-  <div className="base-hinge">
-  <div className="base-hinge-top"></div>
-  <div className="base-hinge-bar"></div>
-  <div className="base-hinge-knob-front">o</div>
-  <div className="base-hinge-rod">|</div>
-  <div className="base-hinge-bar-bottom"></div>
-  <div className="base-hinge-knob-">|||||||||</div>
-  <div className="base-hinge-coil">XXXX</div>
-</div>
-<div className="extra-coil">VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV</div>
-  <div className="base-bottom-1">/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////</div>
-  <div className="base-bottom-2">\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\<br/>\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\</div>
-  <div className="base-bottom-3">/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////</div>
-  <div className="interval-dial"><input className="interval-slider" type="range"></input></div>
-</div>
-</div>
-<p>Time:<span id="time"></span></p>
-<p>Code:<span id="code"></span></p>
-<p>Sentence:<span id="sentence"></span></p>
-    </div>)
-  }
-  handleClick () {
-    this.setState({ n: this.state.n + 1 })
-  }
-}
+       }
+    },
+
+    render: function() {
+        return (<div className="telegraph-container" >
+            <Telegraph barAngle={this.state.barAngle} />
+            <Display time={ this.state.timer } code={ "yarble"} sentence={ "sentence will go here"}/>   
+        </div>)
+    },
+    _addTelegraphListeners: function(){
+
+        window.addEventListener('keydown', function(e){
+            if(!this.state.calledOnce && e.keyCode === 32){
+                this.setState({
+                    barAngle: this.state.barAngle * -1,
+                    calledOnce: true
+                })
+                this._interpretPress();
+            }    
+        }.bind(this))
+
+        window.addEventListener('keyup', function(e){
+            if(e.keyCode === 32){
+                this.setState({
+                    barAngle: this.state.barAngle * -1,
+                    calledOnce: false
+                })
+            }
+        }.bind(this))
+    },
+
+    _interpretPress: function(){
+        if(Timer.timerStarted){
+            
+            
+            // var item = Utilities.encode(this.state.pressed, Timer.timer);
+            // if(item === "z" || item === "|"){
+            //     item.split('|').forEach(function(){
+            //         var letter = code.join("").replace(/x/g,'');
+            //         console.log(letter)
+            //         sentence.push(letterLookup[letter] || "Letter Not Found");
+            //     })
+            // }
+            // if(item !== "z"){
+            //     code.push(item)
+            // }
+            // timer = 0;
+        }
+
+        if(!Timer.timerStarted){
+            Timer._updateLoop(this._updateTimerState);
+        }
+    },
+
+    _updateTimerState: function(t){
+        this.setState({timer: t})
+    }
+        
+});
+
 ReactDOM.render(<App />, document.querySelector('#content'))
 
 
-Timer();
+
 
