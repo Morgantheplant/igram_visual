@@ -18,31 +18,34 @@ var Telegraph = React.createClass({
     </div>
   <div className="base-cord">VVVVVVVVVVVVV</div>
   <div className="base-cord-curved">
-    <span className="w0">V</span>
-    <span className="w1">V</span>
-    <span className="w2">V</span>
-    <span className="w3">V</span>
-    <span className="w4">V</span>
+    { 
+      this._repeatElements({
+        elName:'span',
+        content: 'V',
+        className: 'w',
+        len: 5
+      }) 
+  }
   </div>
   <div className="base-cord-end">VVVV</div>
   <div className="base-cord-flat" style={ cordAngle } >VVVVVVVVVV</div>
   <div className="back-knob-contianer">
   <div className="back-knob-top"></div>
-  <div className="back-knob-inner-1"></div>
-  <div className="back-knob-inner-2"></div>
-  <div className="back-knob-inner-3"></div>
-  <div className="back-knob-inner-4"></div>
-  <div className="back-knob-inner-5"></div>
-  <div className="back-knob-inner-6"></div>
+  {
+    this._repeatElements({
+      className: 'back-knob-inner-',
+      len: 6
+    })
+  }
   <div className="back-knob-bottom"></div>
   </div>  
   <div className="forward-knob-contianer">
-  <div className="forward-knob-inner-1"></div>
-  <div className="forward-knob-inner-2"></div>
-  <div className="forward-knob-inner-3"></div>
-  <div className="forward-knob-inner-4"></div>
-  <div className="forward-knob-inner-5"></div>
-  <div className="forward-knob-inner-6"></div>
+  {
+    this._repeatElements({
+      className: 'forward-knob-inner-',
+      len: 6
+    })
+  }
   <div className="forward-knob-bottom"></div>
   <div className="bottom-conductor-top"></div>
   <div className="bottom-conductor-bottom"></div>
@@ -53,9 +56,12 @@ var Telegraph = React.createClass({
   </div>
   <div className="base-knob-forward-contianer">
   <div className="base-knob-forward">
-  <div className="base-knob-forward-inner-1"></div>
-  <div className="base-knob-forward-inner-2"></div>
-  <div className="base-knob-forward-inner-3"></div>
+  {
+    this._repeatElements({
+      className: 'base-knob-forward-inner-',
+      len: 3
+    })
+  }
   </div>
   </div>
   <div className="base-container">
@@ -79,6 +85,18 @@ var Telegraph = React.createClass({
   },
   _updateIntervals: function(e){
     Timer.interval = e.target.value * 1000
+  },
+  _repeatElements: function(options){
+    options = options || {};
+    options.elName = options.elName || 'div';
+    options.len = options.len || 1; 
+    options.content = options.content || '';
+    options.className = options.className || '';
+    var items = []
+    for (var i = 0; i < options.len; i++) {
+      items.push(<options.elName className={options.className+i} key={i}>{ options.content }</ options.elName>)
+    };
+    return items;
   }
 });
 
