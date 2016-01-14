@@ -132,7 +132,7 @@
     transform: translateX(-37%);
 }
 
-.back-knob-inner-1{
+.back-knob-inner-0{
   position: absolute;
   top: 3px;
   border: 1px solid black;
@@ -143,7 +143,7 @@
   transform: translateX(-50%);
 }
 
-.back-knob-inner-2{
+.back-knob-inner-1{
   position: absolute;
   top: 7px;
   border: 1px solid black;
@@ -155,7 +155,7 @@
   transform: translateX(-50%);
 }
 
-.back-knob-inner-3{
+.back-knob-inner-2{
   position: absolute;
   top: 11px;
   border: 1px solid black;
@@ -166,7 +166,7 @@
   transform: translateX(-50%);
 }
 
-.back-knob-inner-4{
+.back-knob-inner-3{
   position: absolute;
   top: 14px;
   border: 1px solid black;
@@ -176,7 +176,7 @@
   transform: translateX(-50%);
 }
 
-.back-knob-inner-5{
+.back-knob-inner-4{
   position: absolute;
   top: 17px;
   border: 1px solid black;
@@ -188,7 +188,7 @@
   transform: translateX(-50%);
 }
 
-.back-knob-inner-6{
+.back-knob-inner-5{
   position: absolute;
   top: 20px;
   border: 1px solid black;
@@ -230,7 +230,7 @@
     transform: translateX(-50%);
 }
 
-.forward-knob-inner-1{
+.forward-knob-inner-0{
   position: absolute;
   top: 2px;
   border: 1px solid black;
@@ -241,7 +241,7 @@
   transform: translateX(-50%);
 }
 
-.forward-knob-inner-2{
+.forward-knob-inner-1{
   position: absolute;
   top: 7px;
   border: 1px solid black;
@@ -253,7 +253,7 @@
   transform: translateX(-50%);
 }
 
-.forward-knob-inner-3{
+.forward-knob-inner-2{
   position: absolute;
   top: 11px;
   border: 1px solid black;
@@ -264,7 +264,7 @@
   transform: translateX(-50%);
 }
 
-.forward-knob-inner-4{
+.forward-knob-inner-3{
   position: absolute;
   top: 14px;
   border: 1px solid black;
@@ -274,7 +274,7 @@
   transform: translateX(-50%);
 }
 
-.forward-knob-inner-5{
+.forward-knob-inner-4{
   position: absolute;
   top: 17px;
   border: 1px solid black;
@@ -286,7 +286,7 @@
   transform: translateX(-50%);
 }
 
-.forward-knob-inner-6{
+.forward-knob-inner-5{
   position: absolute;
   top: 20px;
   border: 1px solid black;
@@ -468,7 +468,7 @@
     height: 15px;
 }
 
-.base-knob-forward-inner-1 {
+.base-knob-forward-inner-0 {
     position: absolute;
     border: 1px solid black;
     height: 21%;
@@ -480,7 +480,7 @@
     background: white;
 }
 
-.base-knob-forward-inner-2 {
+.base-knob-forward-inner-1 {
     position: absolute;
     border: 1px solid black;
     height: 7px;
@@ -489,7 +489,7 @@
     /* background-color: black; */
 }
 
-.base-knob-forward-inner-3 {
+.base-knob-forward-inner-2 {
     position: absolute;
     width: 129%;
     border: 1px solid black;

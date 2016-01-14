@@ -17,16 +17,15 @@ var App = React.createClass({
           barAngle: -2,
           calledOnce: false,
           timer: 0,
-          pressed: false
-         
-
+          pressed: true,
+          code: []
        }
     },
 
     render: function() {
         return (<div className="telegraph-container" >
             <Telegraph barAngle={this.state.barAngle} />
-            <Display time={ this.state.timer } code={ "yarble"} sentence={ "sentence will go here"}/>   
+            <Display time={ this.state.timer } code={ this.state.code } sentence={ "sentence will go here"}/>   
         </div>)
     },
     _addTelegraphListeners: function(){
@@ -53,7 +52,7 @@ var App = React.createClass({
 
     _interpretPress: function(){
         if(Timer.timerStarted){
-            
+            var item = Utilities.encode(this.state.pressed, Timer.timer);
             
             // var item = Utilities.encode(this.state.pressed, Timer.timer);
             // if(item === "z" || item === "|"){
@@ -63,10 +62,11 @@ var App = React.createClass({
             //         sentence.push(letterLookup[letter] || "Letter Not Found");
             //     })
             // }
-            // if(item !== "z"){
-            //     code.push(item)
-            // }
-            // timer = 0;
+            if(item !== "z"){
+               this.setState({code: this.state.code.concat(item) })
+            }
+            // timer is not synced to state 
+            Timer.timer = 0;
         }
 
         if(!Timer.timerStarted){
