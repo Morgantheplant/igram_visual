@@ -18,7 +18,9 @@ var App = React.createClass({
           calledOnce: false,
           timer: 0,
           pressed: true,
-          code: []
+          code: [],
+          letters:[],
+          words: []
        }
     },
 
@@ -31,21 +33,28 @@ var App = React.createClass({
     _addTelegraphListeners: function(){
 
         window.addEventListener('keydown', function(e){
+            //only called once for keydown event 
             if(!this.state.calledOnce && e.keyCode === 32){
+                //move bar angle signal as pressed event
                 this.setState({
                     barAngle: this.state.barAngle * -1,
-                    calledOnce: true
+                    calledOnce: true,
+                    pressed: true
                 })
                 this._interpretPress();
             }    
         }.bind(this))
 
         window.addEventListener('keyup', function(e){
+            //spacebar up 
             if(e.keyCode === 32){
+                //move bar angle up and signal as depress
                 this.setState({
                     barAngle: this.state.barAngle * -1,
-                    calledOnce: false
+                    calledOnce: false,
+                    pressed: false
                 })
+                this._interpretPress();
             }
         }.bind(this))
     },
@@ -53,17 +62,17 @@ var App = React.createClass({
     _interpretPress: function(){
         if(Timer.timerStarted){
             var item = Utilities.encode(this.state.pressed, Timer.timer);
+            //Todo: refactor Utilities into this method
+            if(item === "*" || item === "|"){
+               this._letterSpacing()
+            }
             
-            // var item = Utilities.encode(this.state.pressed, Timer.timer);
-            // if(item === "z" || item === "|"){
-            //     item.split('|').forEach(function(){
-            //         var letter = code.join("").replace(/x/g,'');
-            //         console.log(letter)
-            //         sentence.push(letterLookup[letter] || "Letter Not Found");
-            //     })
-            // }
-            if(item !== "z"){
-               this.setState({code: this.state.code.concat(item) })
+            if(item === "|"){
+               this._wordSpacing();
+            }
+
+            if(item !== "*" && item !== "|"){
+              this._letterCodeSpacing();
             }
             // timer is not synced to state 
             Timer.timer = 0;
@@ -72,6 +81,32 @@ var App = React.createClass({
         if(!Timer.timerStarted){
             Timer._updateLoop(this._updateTimerState);
         }
+    },
+
+    _letterCodeSpacing: function(item){
+         this.setState({code: this.state.code.concat(item) })
+    },
+
+    _wordSpacing: function(item){
+        var word = this.state.letters.join("");
+        if(this.state.words.length){
+            this.setState({
+                words: this.state.letters.concat(" ")
+            })
+        }
+        this.setState({
+            letters: [],
+            words: this.state.letters.concat(word)
+        })
+    },
+    
+    _letterSpacing: function(item){
+        var code = this.state.code.join("");
+        var letter = Utilities.codeToLetter[code];
+        this.setState({
+            letters: this.state.letters.concat(letter),
+            code: [] 
+        })
     },
 
     _updateTimerState: function(t){

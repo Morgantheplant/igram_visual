@@ -1,6 +1,6 @@
 module.exports = {
 	encode: function(pressed, time){
-		if(pressed){
+		if(!pressed){
 			// If longer than 3x interval && less than 7x interval count as bar
 			if(time > 3 && time <= 7){
 				return "-"
@@ -17,10 +17,10 @@ module.exports = {
 			}
 		}
 
-		if(!pressed){
+		if(pressed){
 		   // letter spacing	
 	        if(time > 3 && time < 7){
-	       	    return "z"
+	       	    return "*"
 	        }
 	       // word spacing
 	        if(time >= 7){
