@@ -1,5 +1,5 @@
-var React = require('react')
-var Timer = require('../utilities/Timer')
+var React = require('react');
+var Timer = require('../utilities/Timer');
 
 var Telegraph = React.createClass({
   render: function() {
@@ -78,13 +78,13 @@ var Telegraph = React.createClass({
   <div className="base-bottom-1">/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////</div>
   <div className="base-bottom-2">\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\<br/>\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\</div>
   <div className="base-bottom-3">/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////</div>
-  <div className="interval-dial"><input className="interval-slider" min="0" max="5" type="range" onChange={ this._updateIntervals} ></input></div>
+  <div className="interval-dial"><input className="interval-slider" min="0" step=".25" max="5" type="range" onChange={ this._updateIntervals} ></input></div>
 </div>
 </div>
     </div>)
   },
   _updateIntervals: function(e){
-    Timer.interval = e.target.value * 1000
+    Timer.setTempo(e.target.value * 1000);
   },
   _repeatElements: function(options){
     options = options || {};

@@ -1,37 +1,35 @@
 module.exports = {
-	encode: function(pressed, time){
-		if(!pressed){
+	interpretLastPress: function(time){
 			// If longer than 3x interval && less than 7x interval count as bar
 			if(time > 3 && time <= 7){
-				return "-"
+				return "-";
 			}
 
 	        // If shorter than 3x interval count as beep
 			if(time <= 3){
-				return "."
+				return ".";
 			}
 
 	        // if longer than 7x throw error.
 			if(time > 7){
-				return "-"
+				return "-";
 			}
-		}
 
-		if(pressed){
+	},
+
+	interpretLastPause: function(time){
 		   // letter spacing	
-	        if(time > 3 && time < 7){
-	       	    return "*"
-	        }
-	       // word spacing
-	        if(time >= 7){
-	            return "|" 
-	        }
-	       // letter code spacing
-	       if(time <= 3 ){
-	            return "x"
-	       } 
-	    
-		}
+        if(time > 3 && time < 7){
+       	    return "_letterSpacing";
+        }
+       // word spacing
+        if(time >= 7){
+            return "_wordSpacing"; 
+        }
+       // letter code spacing
+       if(time <= 3 ){
+            return "_letterCodeSpacing";
+       }
 
 	},
 
@@ -71,11 +69,11 @@ module.exports = {
 		"--.": "D",
 		".": "E",
 		"..-.": "F",
-		"--.": "G",
+		"--.": "G", //duplicate key D
 		"....": "H",
 		"..": "I",
 		".---": "J",
-		"-.-.": "K",
+		"-.-.": "K", //duplicate key C
 		".-..": "L",
 		"--": "M",
 		"-.": "N",
