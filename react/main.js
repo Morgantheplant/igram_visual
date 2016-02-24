@@ -11,7 +11,6 @@ var App = React.createClass({
     componentDidMount: function() {
         this._addTelegraphListeners();
     },
-
     getInitialState: function(){
        return {
           barAngle: -2,
